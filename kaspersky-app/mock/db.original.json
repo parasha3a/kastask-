@@ -1,0 +1,32 @@
+{
+  "users": [
+    { "id": 1, "fullName": "Alberta Catharine", "account": "companydomain/AlbertaCatharine", "email": "AlbertaCatharine@companydomain.com", "groupId": 1, "phone": "+123(456)123-45-66" },
+    { "id": 2, "fullName": "Alexander Suhotin", "account": "companydomain/AlexanderSuhotin", "email": "AlexanderSuhotin@companydomain.com", "groupId": 2, "phone": "+123(456)123-45-66" },
+    { "id": 3, "fullName": "Andrey Fedorov", "account": "companydomain/AndreyFedorov", "email": "AndreyFedorov@companydomain.com", "groupId": 2, "phone": "+123(456)123-45-66" },
+    { "id": 4, "fullName": "Azobe Cylider", "account": "companydomain/AzobeCylider", "email": "AzobeCylider@companydomain.com", "groupId": null, "phone": "+123(456)123-45-66" },
+    { "id": 5, "fullName": "Bree David", "account": "companydomain/BreeDavid", "email": "BreeDavid@companydomain.com", "groupId": 3, "phone": "+123(456)123-45-66" },
+    { "id": 6, "fullName": "Brewen Dawde", "account": "companydomain/BrewenDawde", "email": "BrewenDawde@companydomain.com", "groupId": 3, "phone": "+123(456)123-45-66" },
+    { "id": 7, "fullName": "Carolyn Thersa", "account": "companydomain/CarolynThersa", "email": "CarolynThersa@companydomain.com", "groupId": 4, "phone": "+123(456)123-45-66" },
+    { "id": 8, "fullName": "Darlene Carry", "account": "companydomain/DarleneCary", "email": "DarleneCary@companydomain.com", "groupId": 5, "phone": "+123(456)123-45-66" },
+    { "id": 9, "fullName": "Gold Dollar", "account": "companydomain/GoldDollar", "email": "GoldDollar@companydomain.com", "groupId": 2, "phone": "+123(456)123-45-66" },
+    { "id": 10, "fullName": "Hermelinda Lilia", "account": "companydomain/HermelindaLilia", "email": "HermelindaLilia@companydomain.com", "groupId": 6, "phone": "+123(456)123-45-66" },
+    { "id": 11, "fullName": "Kylie Fransisca", "account": "companydomain/KylieFransisca", "email": "KylieFransisca@companydomain.com", "groupId": 7, "phone": "+123(456)123-45-66" },
+    { "id": 12, "fullName": "Nikita Mikhailov", "account": "companydomain/NikitaMikhailov", "email": "NikitaMikhailov@companydomain.com", "groupId": 7, "phone": "+123(456)123-45-66" },
+    { "id": 13, "fullName": "Ranee Tawny", "account": "companydomain/RaneeTawny", "email": "RaneeTawny@companydomain.com", "groupId": 7, "phone": "+123(456)123-45-66" },
+    { "id": 14, "fullName": "Sergey Fedorov", "account": "companydomain/SergeyFedorov", "email": "SergeyFedorov@companydomain.com", "groupId": 2, "phone": "+123(456)123-45-66" },
+    { "id": 15, "fullName": "Sherley Shanna", "account": "companydomain/SherleyShanno", "email": "SherleyShanno@companydomain.com", "groupId": 8, "phone": "+123(456)123-45-66" },
+    { "id": 16, "fullName": "Sordeis Photuon", "account": "companydomain/SordeisPhotuon", "email": "SordeisPhotuon@companydomain.com", "groupId": null, "phone": "+123(456)123-45-66" },
+    { "id": 17, "fullName": "Travis Jaclyn", "account": "companydomain/TravisJaclyn", "email": "TravisJaclyn@companydomain.com", "groupId": null, "phone": "+123(456)123-45-66" },
+    { "id": 18, "fullName": "Victor Osipov", "account": "companydomain/VictorOsipov", "email": "VictorOsipov@companydomain.com", "groupId": null, "phone": "+123(456)123-45-66" }
+  ],
+  "groups": [
+    { "id": 1, "name": "CDN/CEO", "description": "Executive Leadership", "color": "#FF6B6B" },
+    { "id": 2, "name": "CDN/Managers", "description": "Management Team", "color": "#4ECDC4" },
+    { "id": 3, "name": "CDN/Financials", "description": "Finance Department", "color": "#45B7D1" },
+    { "id": 4, "name": "CDN/Top Kvants", "description": "Top Quants Team", "color": "#FFA07A" },
+    { "id": 5, "name": "CDN/Human resources", "description": "HR Department", "color": "#98D8C8" },
+    { "id": 6, "name": "CDN/Outsourced", "description": "Outsourced Team", "color": "#F7DC6F" },
+    { "id": 7, "name": "CDN/Kvants", "description": "Quants Team", "color": "#BB8FCE" },
+    { "id": 8, "name": "CDN/Sales", "description": "Sales Department", "color": "#85C1E2" }
+  ]
+}
