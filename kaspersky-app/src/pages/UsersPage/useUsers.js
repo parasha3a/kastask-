@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { fetchUsers, createUser, deleteUser } from './users.api.js'
 
 /**
@@ -10,7 +10,7 @@ export function useUsers() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const loadUsers = async () => {
+  const loadUsers = useCallback(async () => {
     try {
       setIsLoading(true)
       setError(null)
@@ -21,17 +21,17 @@ export function useUsers() {
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [])
 
   // Load users on mount
   useEffect(() => {
     loadUsers()
-  }, [])
+  }, [loadUsers])
 
   const addUser = async (userData) => {
     try {
       const newUser = await createUser(userData)
-      setUsers([...users, newUser])
+      setUsers(previous => [...previous, newUser])
       return newUser
     } catch (err) {
       setError(err.message)
@@ -42,7 +42,7 @@ export function useUsers() {
   const removeUser = async (id) => {
     try {
       await deleteUser(id)
-      setUsers(users.filter(u => u.id !== id))
+      setUsers(previous => previous.filter(user => user.id !== id))
     } catch (err) {
       setError(err.message)
       throw err
@@ -52,7 +52,7 @@ export function useUsers() {
   const removeUsers = async (ids) => {
     try {
       await Promise.all(ids.map(id => deleteUser(id)))
-      setUsers(users.filter(u => !ids.includes(u.id)))
+      setUsers(previous => previous.filter(user => !ids.includes(user.id)))
     } catch (err) {
       setError(err.message)
       throw err

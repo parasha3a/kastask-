@@ -1,16 +1,52 @@
-# React + Vite
+# Kaspersky Security Console
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Краткое тестовое приложение на `React + Vite` для работы с пользователями и группами.
 
-Currently, two official plugins are available:
+## Что есть
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- главная страница
+- страница пользователей
+- страница групп
+- локальный mock API на `json-server`
+- тесты на `Vitest`
 
-## React Compiler
+## Запуск
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run start:fresh
+```
 
-## Expanding the ESLint configuration
+Приложение: `http://localhost:5173`  
+API: `http://localhost:3001`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Полезные команды
+
+```bash
+npm run dev        # только frontend
+npm run api        # только mock API
+npm run db:reset   # сброс mock-базы
+npm run test       # тесты
+npm run lint       # линтер
+npm run build      # production build
+npm run verify     # lint + test + build
+```
+
+## Стек
+
+- React 19
+- Vite
+- React Router
+- CSS Modules
+- Framer Motion
+- json-server
+- Vitest
+
+## Структура
+
+```text
+src/components   # общие UI-компоненты
+src/pages        # страницы приложения
+mock/            # mock-данные
+scripts/         # вспомогательные скрипты
+```

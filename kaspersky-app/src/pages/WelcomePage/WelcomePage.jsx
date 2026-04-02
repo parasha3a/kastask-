@@ -1,45 +1,63 @@
+import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router'
-import './WelcomePage.module.css'
+import { useDocumentTitle } from '../../hooks/useDocumentTitle.js'
+import { useI18n } from '../../i18n/LanguageProvider.jsx'
+import styles from './WelcomePage.module.css'
+
+const MotionDiv = motion.div
 
 /**
- * Welcome/Home page
+ * Welcome/Home page - minimalist landing with Kaspersky design
  * @returns {JSX.Element}
  */
 export function WelcomePage() {
+  const { t } = useI18n()
+  useDocumentTitle(t('titles.home'))
+
   return (
-    <div className="welcome">
-      <div className="welcome-hero">
-        <h1>Welcome to Kaspersky Users Management</h1>
-        <p>A modern React application for managing users and groups</p>
-      </div>
+    <div className={styles.pageWrapper}>
+      {/* Dark Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <MotionDiv
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <h1 className={styles.heroTitle}>
+              {t('welcome.hero.title').split(' ').slice(0, -3).join(' ')}
+              {' '}
+              <span className={styles.heroAccent}>
+                {t('welcome.hero.title').split(' ').slice(-3).join(' ')}
+              </span>
+            </h1>
+            <p className={styles.heroDescription}>{t('welcome.hero.description')}</p>
 
-      <div className="welcome-features">
-        <div className="feature">
-          <h3>👥 Users Management</h3>
-          <p>View, search, sort, and manage users with full CRUD operations and group assignments</p>
-          <Link to="/users" className="feature-link">Go to Users →</Link>
+            <ul className={styles.heroBullets}>
+              {t('welcome.hero.bullets').map((bullet, idx) => (
+                <li key={idx}>{bullet}</li>
+              ))}
+            </ul>
+          </MotionDiv>
+
+          <MotionDiv
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+            className={styles.heroActions}
+          >
+            <Link to="/users" className={`button-link primary ${styles.heroCta}`}>
+              {t('welcome.hero.primaryCta')}
+              <ArrowRight size={16} />
+            </Link>
+            <Link to="/groups" className={`button-link secondary ${styles.heroCta}`}>
+              {t('welcome.hero.secondaryCta')}
+              <ArrowRight size={16} />
+            </Link>
+          </MotionDiv>
         </div>
-
-        <div className="feature">
-          <h3>🏢 Groups Overview</h3>
-          <p>Browse user groups with member counts and quick access to group details</p>
-          <Link to="/groups" className="feature-link">Go to Groups →</Link>
-        </div>
-      </div>
-
-      <div className="welcome-info">
-        <h2>About This Project</h2>
-        <p>
-          This is a test assignment showcasing modern React patterns, including:
-        </p>
-        <ul>
-          <li>Custom hooks for state management</li>
-          <li>Semantic HTML and accessibility (a11y)</li>
-          <li>Performance optimization with React Compiler</li>
-          <li>Integration with json-server API</li>
-          <li>Comprehensive testing with Vitest and MSW</li>
-        </ul>
-      </div>
+      </section>
     </div>
   )
 }

@@ -1,0 +1,133 @@
+.groupCard {
+  height: 100%;
+  display: flex;
+  border: 1px solid rgba(229, 229, 229, 0.88);
+  border-radius: 24px;
+  background: var(--kaspersky-white);
+  box-shadow: var(--kaspersky-shadow);
+  overflow: hidden;
+}
+
+.groupCard::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--group-accent);
+}
+
+.cardButton {
+  width: 100%;
+  min-height: 100%;
+  display: grid;
+  align-content: space-between;
+  gap: 18px;
+  padding: 22px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cardButton:hover {
+  background: rgba(0, 166, 81, 0.03);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.groupInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  min-width: 0;
+  flex: 1;
+}
+
+.colorBadge {
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: var(--group-accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--group-accent) 14%, white 86%);
+  flex-shrink: 0;
+}
+
+.groupDetails {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.groupName {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: var(--kaspersky-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.groupDescription {
+  margin: 0;
+  color: var(--kaspersky-text-secondary);
+  line-height: 1.55;
+}
+
+.cardMeta {
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.memberCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(0, 166, 81, 0.08);
+  color: var(--kaspersky-green);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.openIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 166, 81, 0.08);
+  color: var(--kaspersky-green);
+}
+
+.cardAction {
+  display: inline-flex;
+  align-items: center;
+  color: var(--kaspersky-green);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .cardButton {
+    padding: 18px;
+  }
+
+  .cardHeader {
+    gap: 12px;
+  }
+
+  .cardMeta {
+    gap: 10px;
+  }
+}

@@ -1,0 +1,71 @@
+.languageSwitcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--kaspersky-border);
+  border-radius: 999px;
+  background: rgba(245, 245, 245, 0.92);
+}
+
+.languageIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--kaspersky-green);
+}
+
+.languageButton {
+  min-width: 44px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--kaspersky-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.languageButton:hover {
+  color: var(--kaspersky-text);
+}
+
+.active {
+  background: var(--kaspersky-green);
+  color: var(--kaspersky-white);
+}
+
+@media (max-width: 768px) {
+  .languageSwitcher {
+    gap: 2px;
+    padding: 3px;
+  }
+
+  .languageIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .languageButton {
+    min-width: 40px;
+    height: 30px;
+    font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .languageIcon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .languageButton {
+    min-width: 36px;
+    height: 30px;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+  }
+}

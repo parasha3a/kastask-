@@ -1,40 +1,57 @@
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(42, 47, 58, 0.8) 20%,
+      rgba(60, 66, 82, 0.95) 45%,
+      rgba(42, 47, 58, 0.8) 70%
+    );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  border-radius: 4px;
+  border-radius: 999px;
 }
 
-.skeleton-text {
+.skeletonText {
   height: 16px;
   margin-bottom: 8px;
 }
 
-.skeleton-circle {
+.skeletonCircle {
   border-radius: 50%;
   width: 40px;
   height: 40px;
 }
 
-.skeleton-rect {
+.skeletonRect {
   height: 100px;
+  border-radius: var(--kaspersky-radius-large);
 }
 
-.table-skeleton {
+.tableSkeleton {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid var(--kaspersky-border);
+  border-radius: var(--kaspersky-radius-large);
+  background: var(--kaspersky-white);
+  box-shadow: var(--kaspersky-shadow);
+}
+
+.tableHeaderSkeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 12px;
-  padding: 16px;
 }
 
 .skeleton-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  gap: 12px;
-  padding: 12px;
-  background: white;
-  border-radius: 4px;
-  border: 1px solid #eee;
+  gap: 14px;
+  padding: 18px;
+  background: var(--kaspersky-white);
+  border-radius: 16px;
+  border: 1px solid rgba(42, 47, 58, 0.5);
 }
 
 @keyframes loading {

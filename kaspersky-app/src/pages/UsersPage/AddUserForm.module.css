@@ -1,40 +1,54 @@
-.add-user-form {
+.addUserForm {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
-.form-group {
+.formGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.form-group label {
-  font-size: 14px;
+.formGroup label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--kaspersky-text);
+}
+
+.formGroup span {
+  color: var(--kaspersky-text-secondary);
+  font-size: 0.8rem;
   font-weight: 500;
-  color: #333;
 }
 
-.form-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: all 0.2s ease;
+.formSelect {
+  min-height: 48px;
+  padding: 0 14px;
+  border: 1px solid var(--kaspersky-border);
+  border-radius: var(--kaspersky-radius);
+  background: var(--kaspersky-white);
+  color: var(--kaspersky-text);
 }
 
-.form-select:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+.formSelect:focus {
+  outline: 0;
+  border-color: rgba(0, 166, 81, 0.55);
+  box-shadow: 0 0 0 4px rgba(0, 166, 81, 0.14);
 }
 
-.form-error {
-  padding: 10px;
-  background-color: #fff5f5;
-  color: #dc3545;
-  border: 1px solid #dc3545;
-  border-radius: 4px;
-  font-size: 13px;
+.formError {
+  padding: 12px 14px;
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.1);
+  color: #ff6b6b;
+  font-size: 0.85rem;
+}
+
+.submitButton {
+  width: 100%;
 }

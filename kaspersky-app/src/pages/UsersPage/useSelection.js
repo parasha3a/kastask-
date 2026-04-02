@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 /**
  * Hook for managing row selection with checkboxes
@@ -7,6 +7,10 @@ import { useState, useCallback } from 'react'
  */
 export function useSelection(items) {
   const [selected, setSelected] = useState(new Set())
+  const selectedInView = useMemo(() => {
+    const validIds = new Set(items.map(item => item.id))
+    return new Set([...selected].filter(id => validIds.has(id)))
+  }, [items, selected])
 
   const toggleOne = useCallback((id) => {
     setSelected(prev => {
@@ -21,26 +25,26 @@ export function useSelection(items) {
   }, [])
 
   const toggleAll = useCallback(() => {
-    if (selected.size === items.length) {
+    if (selectedInView.size === items.length) {
       setSelected(new Set())
     } else {
       const allIds = new Set(items.map(item => item.id))
       setSelected(allIds)
     }
-  }, [items, selected.size])
+  }, [items, selectedInView.size])
 
   const clearSelection = useCallback(() => {
     setSelected(new Set())
   }, [])
 
-  const isAllSelected = selected.size === items.length && items.length > 0
+  const isAllSelected = selectedInView.size === items.length && items.length > 0
 
   return {
-    selected,
+    selected: selectedInView,
     toggleOne,
     toggleAll,
     isAllSelected,
     clearSelection,
-    selectedIds: Array.from(selected),
+    selectedIds: Array.from(selectedInView),
   }
 }

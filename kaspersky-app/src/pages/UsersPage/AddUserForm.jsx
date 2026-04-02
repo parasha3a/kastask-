@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { Input, Button } from '../../components/index.js'
-import './AddUserForm.module.css'
+import { useI18n } from '../../i18n/LanguageProvider.jsx'
+import styles from './AddUserForm.module.css'
 
 /**
- * Form to add a new user
+ * Form to add a new user with dynamic group loading
  * @param {Function} onSubmit - callback with user data
  * @returns {JSX.Element}
  */
-export function AddUserForm({ onSubmit }) {
+export function AddUserForm({ onSubmit, groups = [] }) {
+  const { t } = useI18n()
   const [formData, setFormData] = useState({
     fullName: '',
     account: '',
@@ -20,11 +22,11 @@ export function AddUserForm({ onSubmit }) {
 
   const validate = () => {
     const newErrors = {}
-    if (!formData.fullName.trim()) newErrors.fullName = 'Name is required'
-    if (!formData.account.trim()) newErrors.account = 'Account is required'
-    if (!formData.email.trim()) newErrors.email = 'Email is required'
-    if (!formData.email.includes('@')) newErrors.email = 'Invalid email format'
-    if (!formData.phone.trim()) newErrors.phone = 'Phone is required'
+    if (!formData.fullName.trim()) newErrors.fullName = t('users.form.errors.fullName')
+    if (!formData.account.trim()) newErrors.account = t('users.form.errors.account')
+    if (!formData.email.trim()) newErrors.email = t('users.form.errors.emailRequired')
+    if (formData.email && !formData.email.includes('@')) newErrors.email = t('users.form.errors.emailInvalid')
+    if (!formData.phone.trim()) newErrors.phone = t('users.form.errors.phone')
     return newErrors
   }
 
@@ -72,9 +74,10 @@ export function AddUserForm({ onSubmit }) {
   }
 
   return (
-    <form className="add-user-form" onSubmit={handleSubmit}>
+    <form className={styles.addUserForm} onSubmit={handleSubmit}>
       <Input
-        placeholder="Full Name"
+        label={t('users.form.fullName')}
+        placeholder={t('users.form.fullNamePlaceholder')}
         name="fullName"
         value={formData.fullName}
         onChange={handleChange}
@@ -82,7 +85,8 @@ export function AddUserForm({ onSubmit }) {
       />
 
       <Input
-        placeholder="Account (companydomain/UserName)"
+        label={t('users.form.account')}
+        placeholder={t('users.form.accountPlaceholder')}
         name="account"
         value={formData.account}
         onChange={handleChange}
@@ -91,7 +95,8 @@ export function AddUserForm({ onSubmit }) {
 
       <Input
         type="email"
-        placeholder="Email"
+        label={t('users.form.email')}
+        placeholder={t('users.form.emailPlaceholder')}
         name="email"
         value={formData.email}
         onChange={handleChange}
@@ -99,38 +104,38 @@ export function AddUserForm({ onSubmit }) {
       />
 
       <Input
-        placeholder="Phone"
+        label={t('users.form.phone')}
+        placeholder={t('users.form.phonePlaceholder')}
         name="phone"
         value={formData.phone}
         onChange={handleChange}
         error={errors.phone}
       />
 
-      <div className="form-group">
-        <label htmlFor="groupId">Group (optional)</label>
+      <div className={styles.formGroup}>
+        <label htmlFor="groupId">
+          {t('users.form.group')} <span>{t('common.optional')}</span>
+        </label>
         <select
           id="groupId"
           name="groupId"
           value={formData.groupId}
           onChange={handleChange}
-          className="form-select"
+          className={styles.formSelect}
         >
-          <option value="">Unmanaged</option>
-          <option value="1">Group 1</option>
-          <option value="2">Group 2</option>
-          <option value="3">Group 3</option>
-          <option value="4">Group 4</option>
-          <option value="5">Group 5</option>
-          <option value="6">Group 6</option>
-          <option value="7">Group 7</option>
-          <option value="8">Group 8</option>
+          <option value="">{t('users.form.groupPlaceholder')}</option>
+          {groups.map(group => (
+            <option key={group.id} value={group.id}>
+              {group.name}
+            </option>
+          ))}
         </select>
       </div>
 
-      {errors.submit && <div className="form-error">{errors.submit}</div>}
+      {errors.submit && <div className={styles.formError}>{errors.submit}</div>}
 
-      <Button type="submit" disabled={isSubmitting} loading={isSubmitting}>
-        Add User
+      <Button type="submit" disabled={isSubmitting} loading={isSubmitting} className={styles.submitButton}>
+        {t('users.form.submit')}
       </Button>
     </form>
   )

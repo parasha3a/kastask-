@@ -1,4 +1,4 @@
-import './Button.module.css'
+import styles from './Button.module.css'
 
 /**
  * Reusable Button component
@@ -17,16 +17,26 @@ export function Button({
   disabled = false,
   loading = false,
   children,
+  className = '',
   onClick,
   ...props
 }) {
-  const className = `btn btn-${variant} btn-${size} ${disabled ? 'disabled' : ''} ${
-    loading ? 'loading' : ''
-  }`
+  const variantClass = styles[`btn${variant.charAt(0).toUpperCase()}${variant.slice(1)}`]
+  const sizeClass = styles[`btn${size.charAt(0).toUpperCase()}${size.slice(1)}`]
+  const finalClassName = `${styles.btn} ${variantClass || ''} ${sizeClass || ''} ${disabled ? styles.disabled : ''} ${
+    loading ? styles.loading : ''
+  } ${className}`.trim()
 
   return (
-    <button className={className} onClick={onClick} disabled={disabled || loading} {...props}>
-      {loading ? '...' : children}
+    <button
+      className={finalClassName}
+      onClick={onClick}
+      disabled={disabled || loading}
+      aria-busy={loading}
+      {...props}
+    >
+      {loading && <span className={styles.spinner} aria-hidden="true" />}
+      <span className={styles.label}>{children}</span>
     </button>
   )
 }

@@ -1,5 +1,10 @@
 import { useEffect } from 'react'
-import './Toast.module.css'
+import { AnimatePresence, motion } from 'framer-motion'
+import { AlertTriangle, CheckCircle2, Info, X } from 'lucide-react'
+import { useI18n } from '../i18n/LanguageProvider.jsx'
+import styles from './Toast.module.css'
+
+const MotionDiv = motion.div
 
 /**
  * Toast/Notification component with auto-dismiss
@@ -12,21 +17,50 @@ import './Toast.module.css'
  * @returns {JSX.Element}
  */
 export function Toast({ message, type = 'info', duration = 3000, onClose, onUndo }) {
+  const { t } = useI18n()
+
   useEffect(() => {
-    const timer = setTimeout(onClose, duration)
+    const timer = setTimeout(() => {
+      onClose?.()
+    }, duration)
+
     return () => clearTimeout(timer)
   }, [duration, onClose])
 
+  const Icon = {
+    success: CheckCircle2,
+    error: AlertTriangle,
+    warning: AlertTriangle,
+    info: Info,
+  }[type]
+
   return (
-    <div className={`toast toast-${type}`}>
-      <span className="toast-message">{message}</span>
+    <MotionDiv
+      className={`${styles.toast} ${styles[`toast${type.charAt(0).toUpperCase()}${type.slice(1)}`]}`}
+      initial={{ opacity: 0, x: 36, y: 10 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      exit={{ opacity: 0, x: 36, y: 10 }}
+      transition={{ duration: 0.22, ease: 'easeOut' }}
+      role="status"
+    >
+      <span className={styles.toastIcon} aria-hidden="true">
+        <Icon size={18} />
+      </span>
+      <span className={styles.toastMessage}>{message}</span>
       {onUndo && (
-        <button className="toast-undo" onClick={onUndo}>
-          Undo
+        <button type="button" className={styles.toastUndo} onClick={onUndo}>
+          {t('common.undo')}
         </button>
       )}
-      <button className="toast-close" onClick={onClose}>×</button>
-    </div>
+      <button
+        type="button"
+        className={styles.toastClose}
+        onClick={onClose}
+        aria-label={t('common.close')}
+      >
+        <X size={16} />
+      </button>
+    </MotionDiv>
   )
 }
 
@@ -40,17 +74,19 @@ export function ToastContainer({ toasts = [] }) {
   if (toasts.length === 0) return null
 
   return (
-    <div className="toast-container">
-      {toasts.map(toast => (
-        <Toast
-          key={toast.id}
-          message={toast.message}
-          type={toast.type}
-          duration={toast.duration}
-          onClose={toast.onClose}
-          onUndo={toast.onUndo}
-        />
-      ))}
+    <div className={styles.toastContainer}>
+      <AnimatePresence>
+        {toasts.map(toast => (
+          <Toast
+            key={toast.id}
+            message={toast.message}
+            type={toast.type}
+            duration={toast.duration}
+            onClose={toast.onClose}
+            onUndo={toast.onUndo}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   )
 }

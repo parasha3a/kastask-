@@ -1,4 +1,4 @@
-import './Skeleton.module.css'
+import styles from './Skeleton.module.css'
 
 /**
  * Skeleton loader component
@@ -8,13 +8,16 @@ import './Skeleton.module.css'
  * @param {number} [props.height] - height in px
  * @returns {JSX.Element}
  */
-export function Skeleton({ variant = 'text', width, height }) {
+export function Skeleton({ variant = 'text', width, height, className }) {
   const style = {
     width: width ? `${width}px` : '100%',
     height: height ? `${height}px` : undefined,
   }
 
-  return <div className={`skeleton skeleton-${variant}`} style={style} />
+  const variantClass = styles[`skeleton${variant.charAt(0).toUpperCase()}${variant.slice(1)}`]
+  const finalClassName = className ? `${styles.skeleton} ${variantClass || ''} ${className}` : `${styles.skeleton} ${variantClass || ''}`
+
+  return <div className={finalClassName} style={style} />
 }
 
 /**
@@ -25,9 +28,14 @@ export function Skeleton({ variant = 'text', width, height }) {
  */
 export function TableSkeleton({ rows = 5, columns = 5 }) {
   return (
-    <div className="table-skeleton">
+    <div className={styles.tableSkeleton}>
+      <div className={styles.tableHeaderSkeleton}>
+        {Array.from({ length: columns }).map((_, index) => (
+          <Skeleton key={`header-${index}`} width={120} height={18} />
+        ))}
+      </div>
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} className="skeleton-row">
+        <div key={i} className={styles.skeletonRow}>
           {Array.from({ length: columns }).map((_, j) => (
             <Skeleton key={j} width={100} height={20} />
           ))}
